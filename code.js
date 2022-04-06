@@ -1,5 +1,3 @@
-//creating container with divs
-
 const container = document.querySelector(".container");
 const color = document.querySelector(".rgb");
 const reset = document.querySelector("button");
@@ -7,10 +5,13 @@ const gridSizeInput = document.querySelector(".gridSize");
 
 let isDown = false;
 let size = 16;
+
 gridSizeInput.addEventListener("change", () => {
   size = gridSizeInput.value;
-  container.innerHTML = "";
-  createDivs(size);
+  if (size <= 100) {
+    container.innerHTML = "";
+    createDivs(size);
+  } else size = 16;
 });
 
 function createDivs(gridSize) {
@@ -19,7 +20,7 @@ function createDivs(gridSize) {
     cell.classList.add(".cell");
     cell.style.border = "1px solid black";
     container.appendChild(cell);
-    console.log(gridSize);
+
     container.setAttribute(
       "style",
       "grid-template: repeat(" +
